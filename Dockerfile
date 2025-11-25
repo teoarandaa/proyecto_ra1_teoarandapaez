@@ -12,6 +12,10 @@ ENV PATH=$PATH:$JAVA_HOME/bin
 # Establecer directorio de trabajo
 WORKDIR /app
 
+# Crear directorios necesarios con permisos adecuados
+RUN mkdir -p /app/warehouse && \
+    chmod 777 /app/warehouse
+
 # Copiar requirements si existe (opcional)
 COPY requirements.txt* ./
 

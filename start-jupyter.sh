@@ -4,6 +4,10 @@
 # Crear directorio de configuración si no existe
 mkdir -p /root/.jupyter
 
+# Asegurar que el directorio warehouse existe y tiene permisos adecuados
+mkdir -p /app/warehouse
+chmod 777 /app/warehouse
+
 # Crear archivo de configuración completo
 cat > /root/.jupyter/jupyter_notebook_config.py << EOF
 c = get_config()
