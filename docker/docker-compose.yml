@@ -1,0 +1,14 @@
+services:
+  jupyter:
+    build: .
+    container_name: jupyter-notebooks
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../notebooks:/app/notebooks
+      - ../data:/app/data
+      - ../warehouse:/app/warehouse
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    restart: unless-stopped
+
