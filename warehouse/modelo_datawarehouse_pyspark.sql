@@ -53,40 +53,6 @@ CREATE TABLE IF NOT EXISTS dim_energy_certificate (
     certificate_type TEXT UNIQUE NOT NULL
 );
 
--- ============================================
--- TABLA DE HECHOS
--- ============================================
-
--- Tabla de hechos: fact_housing
-CREATE TABLE IF NOT EXISTS fact_housing (
-    listing_id TEXT PRIMARY KEY,
-    operation_id INTEGER,
-    FOREIGN KEY (operation_id) REFERENCES dim_operation(operation_id),
-    district_id INTEGER,
-    FOREIGN KEY (district_id) REFERENCES dim_district(district_id),
-    neighborhood_id INTEGER,
-    FOREIGN KEY (neighborhood_id) REFERENCES dim_neighborhood(neighborhood_id),
-    address TEXT,
-    surface_m2 REAL,
-    rooms INTEGER,
-    bathrooms INTEGER,
-    price_eur REAL,
-    price_per_m2 REAL,
-    floor TEXT,
-    elevator BOOLEAN,
-    balcony BOOLEAN,
-    furnished BOOLEAN,
-    condition_id INTEGER,
-    FOREIGN KEY (condition_id) REFERENCES dim_condition(condition_id),
-    energy_certificate_id INTEGER,
-    FOREIGN KEY (energy_certificate_id) REFERENCES dim_energy_certificate(certificate_id),
-    has_parking BOOLEAN,
-    latitude REAL,
-    longitude REAL,
-    agency_id INTEGER,
-    FOREIGN KEY (agency_id) REFERENCES dim_agency(agency_id)
-);
-
 -- Índices para mejorar el rendimiento de consultas
 CREATE INDEX IF NOT EXISTS idx_fact_price ON fact_housing(price_eur);
 CREATE INDEX IF NOT EXISTS idx_fact_surface ON fact_housing(surface_m2);
